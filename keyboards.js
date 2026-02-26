@@ -1,64 +1,64 @@
-function mainMenu(lang = 'ar', storeOpen = false){
-  if (lang === 'en') {
-    return {
-      inline_keyboard: [
-        [{ text: storeOpen ? '🛍 Store' : '🛍 Store (Soon)', callback_data: 'store' }],
-        [{ text: '🌐 AIN BIO', callback_data: 'bio' }],
-        [{ text: '🔔 Launch Alerts', callback_data: 'subscribe' }],
-        [{ text: '🌍 Change Language', callback_data: 'lang' }],
-        [{ text: '⚙️ Admin', callback_data: 'admin' }],
-      ]
-    };
-  }
+function mainMenu(lang = 'ar', storeOpen = false) {
+  const isEn = lang === 'en';
+  
+  // نصوص الأزرار حسب اللغة
+  const labels = {
+    store: storeOpen ? (isEn ? '🛍 Store' : '🛍 المتجر') : (isEn ? '🛍 Store (Soon)' : '🛍 المتجر (قريباً)'),
+    bio: isEn ? '🌐 AIN BIO' : '🌐 AIN BIO',
+    alerts: isEn ? '🔔 Alerts' : '🔔 الإشعارات',
+    lang: isEn ? '🌍 العربية' : '🌍 English',
+    admin: isEn ? '⚙️ Admin' : '⚙️ الأدمن'
+  };
 
   return {
     inline_keyboard: [
-      [{ text: storeOpen ? '🛍 المتجر' : '🛍 المتجر (قريباً)', callback_data: 'store' }],
-      [{ text: '🌐 AIN BIO', callback_data: 'bio' }],
-      [{ text: '🔔 إشعار الافتتاح', callback_data: 'subscribe' }],
-      [{ text: '🌍 تغيير اللغة', callback_data: 'lang' }],
-      [{ text: '⚙️ أدمن', callback_data: 'admin' }],
+      // زر المتجر نخليه كبير لوحده لأنه الأهم
+      [{ text: labels.store, callback_data: 'store' }],
+      // زرين بجانب بعض (BIO والإشعارات)
+      [
+        { text: labels.bio, callback_data: 'bio' },
+        { text: labels.alerts, callback_data: 'subscribe' }
+      ],
+      // زرين بجانب بعض (اللغة والأدمن)
+      [
+        { text: labels.lang, callback_data: 'lang' },
+        { text: labels.admin, callback_data: 'admin' }
+      ]
     ]
   };
 }
 
-function bioMenu(lang='ar', url){
-  if (lang === 'en') {
-    return {
-      inline_keyboard: [
-        [{ text: 'Open AIN BIO ↗', url }],
-        [{ text: '⬅ Back', callback_data: 'back' }],
-      ]
-    };
-  }
+function bioMenu(lang = 'ar', url) {
+  const isEn = lang === 'en';
   return {
     inline_keyboard: [
-      [{ text: 'Open AIN BIO ↗', url }],
-      [{ text: '⬅ رجوع', callback_data: 'back' }],
+      [{ text: isEn ? 'Open AIN BIO ↗' : 'فتح الرابط ↗', url: url }],
+      [{ text: isEn ? '⬅ Back' : '⬅ رجوع', callback_data: 'back' }]
     ]
   };
 }
 
-function adminMenu(lang='ar', storeOpen=false){
-  if (lang === 'en') {
-    return {
-      inline_keyboard: [
-        [{ text: storeOpen ? '🟢 Set Store: Coming Soon' : '🟢 Set Store: Open', callback_data: 'admin_toggle_store' }],
-        [{ text: '📣 Broadcast to Subscribers', callback_data: 'admin_broadcast' }],
-        [{ text: '📢 Post to Channel', callback_data: 'admin_channel_post' }],
-        [{ text: '🌐 Set AIN BIO URL', callback_data: 'admin_set_bio' }],
-        [{ text: '⬅ Back', callback_data: 'back' }],
-      ]
-    };
-  }
-
+function adminMenu(lang = 'ar', storeOpen = false) {
+  const isEn = lang === 'en';
+  
   return {
     inline_keyboard: [
-      [{ text: storeOpen ? '🔴 خلّه قريباً' : '🟢 افتح المتجر', callback_data: 'admin_toggle_store' }],
-      [{ text: '📣 إرسال إعلان للمشتركين', callback_data: 'admin_broadcast' }],
-      [{ text: '📢 نشر في القناة', callback_data: 'admin_channel_post' }],
-      [{ text: '🌐 تغيير رابط AIN BIO', callback_data: 'admin_set_bio' }],
-      [{ text: '⬅ رجوع', callback_data: 'back' }],
+      // زر تبديل حالة المتجر مع إيموجي ذكي
+      [{ 
+        text: storeOpen 
+          ? (isEn ? '🔴 Close Store' : '🔴 إغلاق المتجر') 
+          : (isEn ? '🟢 Open Store' : '🟢 فتح المتجر'), 
+        callback_data: 'admin_toggle_store' 
+      }],
+      // البرودكاست والقناة بجانب بعض
+      [
+        { text: isEn ? '📣 Broadcast' : '📣 إعلان', callback_data: 'admin_broadcast' },
+        { text: isEn ? '📢 Post' : '📢 نشر', callback_data: 'admin_channel_post' }
+      ],
+      // تغيير الرابط
+      [{ text: isEn ? '🌐 Set BIO URL' : '🌐 تغيير الرابط', callback_data: 'admin_set_bio' }],
+      // زر الرجوع
+      [{ text: isEn ? '⬅ Back' : '⬅ رجوع', callback_data: 'back' }]
     ]
   };
 }
