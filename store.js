@@ -6,31 +6,40 @@ const SUBS_FILE = path.join(DATA_DIR, 'subscribers.json');
 const PREFS_FILE = path.join(DATA_DIR, 'prefs.json');
 const STATE_FILE = path.join(DATA_DIR, 'state.json');
 
-function ensureDir(){
-  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-}
+// تأكد من وجود المجلد عند بدء التشغيل
+if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 
-function readJSON(file, fallback){
-  ensureDir();
-  try{
+function readJSON(file, fallback) {
+  try {
     if (!fs.existsSync(file)) return fallback;
     const txt = fs.readFileSync(file, 'utf8');
-    return JSON.parse(txt || 'null') ?? fallback;
-  }catch{
+    return JSON.parse(txt) || fallback;
+  } catch (err) {
+    console.error(`❌ Error reading ${file}:`, err);
     return fallback;
   }
 }
 
-function writeJSON(file, obj){
-  ensureDir();
-  fs.writeFileSync(file, JSON.stringify(obj, null, 2), 'utf8');
+function writeJSON(file, obj) {
+  try {
+    // حفظ مؤقت للملف لضمان عدم ضياع البيانات في حال فشل الكتابة
+    const data = JSON.stringify(obj, null, 2);
+    fs.writeFileSync(file, data, 'utf8');
+  } catch (err) {
+    console.error(`❌ Error writing to ${file}:`, err);
+  }
 }
 
-function getSubscribers(){
-  return readJSON(SUBS_FILE, { ids: [] });
+// --- العمليات ---
+
+function getSubscribers() {
+  const data = readJSON(SUBS_FILE, { ids: [] });
+  // التأكد من أن ids دائماً مصفوفة ونظيفة من القيم المتكررة
+  data.ids = [...new Set(data.ids.map(String))];
+  return data;
 }
 
-function addSubscriber(chatId){
+function addSubscriber(chatId) {
   const data = getSubscribers();
   const id = String(chatId);
   if (!data.ids.includes(id)) {
@@ -41,38 +50,37 @@ function addSubscriber(chatId){
   return false;
 }
 
-function removeSubscriber(chatId){
+function removeSubscriber(chatId) {
   const data = getSubscribers();
   const id = String(chatId);
-  const before = data.ids.length;
+  const originalLength = data.ids.length;
   data.ids = data.ids.filter(x => x !== id);
-  writeJSON(SUBS_FILE, data);
-  return data.ids.length !== before;
+  if (data.ids.length !== originalLength) {
+    writeJSON(SUBS_FILE, data);
+    return true;
+  }
+  return false;
 }
 
-function getPrefs(){
-  return readJSON(PREFS_FILE, { langByUser: {} });
-}
-
-function getLang(userId){
-  const prefs = getPrefs();
+function getLang(userId) {
+  const prefs = readJSON(PREFS_FILE, { langByUser: {} });
   return prefs.langByUser[String(userId)] || 'ar';
 }
 
-function setLang(userId, lang){
-  const prefs = getPrefs();
+function setLang(userId, lang) {
+  const prefs = readJSON(PREFS_FILE, { langByUser: {} });
   prefs.langByUser[String(userId)] = (lang === 'en') ? 'en' : 'ar';
   writeJSON(PREFS_FILE, prefs);
 }
 
-function getState(){
+function getState() {
   return readJSON(STATE_FILE, {
-    storeOpen: false, // حالياً مغلق (قريباً)
-    ainBioUrl: null,  // لو تبي تغييره من الأدمن
+    storeOpen: false,
+    ainBioUrl: null,
   });
 }
 
-function setState(patch){
+function setState(patch) {
   const st = getState();
   const next = { ...st, ...patch };
   writeJSON(STATE_FILE, next);
