@@ -1,67 +1,73 @@
 module.exports = {
   ar: {
-    welcome: `👑 **مرحباً بك في AIN STORE**
-بوابتك الرسمية لـ:
-• إشعار الافتتاح 🔔
-• العروض 🔥
-• AIN BIO 🌐
-• الاشتراكات 💎
+    welcome: `✨ **أهلاً بك في AIN STORE** ✨
+\nبوابتك الرسمية والاحترافية لـ:
+• إشعارات الافتتاح 🔔
+• أقوى العروض الحصرية 🔥
+• باقات **AIN BIO** 🌐
+• اشتراكاتك المميزة 💎
 
-اختر من القائمة 👇`,
+يرجى اختيار القسم المطلوب من القائمة 👇`,
 
-    storeSoon: `🚧 **قريباً جداً**
-نجهّز شي يليق باسم **AIN STORE**.
+    storeSoon: `🚧 **العمل جارٍ على قدم وساق!**
+نحن نجهز تجربة تسوق تليق بمستوى **AIN STORE**.
 
-اشترك بإشعار الافتتاح ونبلغك أول ما نفتح 🔔`,
+اضغط على "إشعار الافتتاح" لتكون أول من يعلم عند الانطلاق 🔔`,
 
-    subscribedNew: `✅ تم اشتراكك بإشعار الافتتاح 🔔`,
-    subscribedAlready: `✅ أنت مشترك بالفعل بإشعار الافتتاح 🔔`,
-    unsubscribed: `تم إلغاء الاشتراك ✅`,
+    subscribedNew: `🎉 **أهلاً بك معنا!**\nتم اشتراكك بنجاح في نظام الإشعارات. سنوافيك بكل جديد فور حدوثه 🔔`,
+    subscribedAlready: `✅ لا تقلق، أنت مشترك بالفعل في نظام الإشعارات لدينا 🔔`,
+    unsubscribed: `✅ تم إلغاء الاشتراك بنجاح.`,
 
-    bioText: `🌐 **AIN BIO**
-كل روابطك وباقاتك في صفحة واحدة — بشكل احترافي.`,
-    adminOnly: `⛔ هذا القسم للأدمن فقط.`,
-    adminPanel: `👑 **لوحة الأدمن**
-اختر العملية:`,
-    askBroadcast: `✍️ اكتب رسالة الإعلان الآن (بتنرسل للمشتركين).`,
-    askChannelPost: `✍️ اكتب رسالة القناة الآن (بتنرسل في @ainstoreofficial).`,
-    broadcastDone: (ok, fail) => `✅ تم الإرسال: ${ok}\n⚠️ فشل: ${fail}`,
-    channelPostDone: `✅ تم النشر في القناة.`,
-    storeStatus: (open) => open ? `🟢 المتجر: مفتوح` : `🔴 المتجر: قريباً`,
-    setBioAsk: `✍️ ارسل رابط AIN BIO الجديد الآن.`,
-    setBioDone: `✅ تم تحديث رابط AIN BIO.`,
+    bioText: `🌐 **خدمة AIN BIO**
+\nحوّل وجودك الرقمي إلى صفحة احترافية تجمع كافة روابطك وباقاتك في مكان واحد وبلمسة عصرية.`,
+    
+    adminOnly: `⛔ **تنبيه:** هذه المنطقة مخصصة لفريق الإدارة فقط.`,
+    adminPanel: `🛠 **لوحة التحكم الإدارية**\n\nتحكم في المتجر، أرسل التنبيهات، وحدث الروابط من هنا:`,
+    
+    askBroadcast: `✍️ **إرسال إعلان عام:**\nاكتب نص الإعلان الذي ترغب بإرساله لجميع المشتركين الآن.\n\n(لإلغاء العملية أرسل: **إلغاء**)`,
+    askChannelPost: `✍️ **نشر في القناة:**\nاكتب النص الذي سيتم نشره في القناة الرسمية الآن.\n\n(لإلغاء العملية أرسل: **إلغاء**)`,
+    
+    broadcastDone: (ok, fail) => `📊 **تقرير الإرسال النهائي:**\n\n✅ تم التسليم بنجاح: ${ok}\n⚠️ فشل الإرسال لـ: ${fail}`,
+    channelPostDone: `🚀 تم النشر في القناة الرسمية بنجاح!`,
+    storeStatus: (open) => open ? `🟢 **حالة المتجر:** مفتوح الآن` : `🔴 **حالة المتجر:** مغلق (قريباً)`,
+    
+    setBioAsk: `✍️ يرجى إرسال رابط **AIN BIO** الجديد الآن:`,
+    setBioDone: `✅ تم تحديث الرابط بنجاح! سيتم توجيه المستخدمين للرابط الجديد فوراً.`,
   },
 
   en: {
-    welcome: `👑 **Welcome to AIN STORE**
-Your official gateway for:
+    welcome: `✨ **Welcome to AIN STORE** ✨
+\nYour professional gateway for:
 • Launch alerts 🔔
-• Offers 🔥
-• AIN BIO 🌐
-• Subscriptions 💎
+• Exclusive offers 🔥
+• **AIN BIO** services 🌐
+• Premium subscriptions 💎
 
-Choose from the menu 👇`,
+Please choose from the menu below 👇`,
 
-    storeSoon: `🚧 **Coming Soon**
-We’re preparing something worthy of **AIN STORE**.
+    storeSoon: `🚧 **Under Construction**
+We are crafting a shopping experience worthy of the **AIN STORE** name.
 
-Subscribe to launch alerts 🔔`,
+Subscribe to launch alerts to stay updated 🔔`,
 
-    subscribedNew: `✅ You’re subscribed to launch alerts 🔔`,
-    subscribedAlready: `✅ You’re already subscribed 🔔`,
-    unsubscribed: `Unsubscribed ✅`,
+    subscribedNew: `🎉 **Welcome aboard!**\nYou've successfully subscribed to our launch alerts 🔔`,
+    subscribedAlready: `✅ You're already on our VIP notification list 🔔`,
+    unsubscribed: `✅ Unsubscribed successfully.`,
 
-    bioText: `🌐 **AIN BIO**
-All your links & plans in one professional page.`,
-    adminOnly: `⛔ Admins only.`,
-    adminPanel: `👑 **Admin Panel**
-Choose an action:`,
-    askBroadcast: `✍️ Send your broadcast message now (to subscribers).`,
-    askChannelPost: `✍️ Send your channel post now (to @ainstoreofficial).`,
-    broadcastDone: (ok, fail) => `✅ Sent: ${ok}\n⚠️ Failed: ${fail}`,
-    channelPostDone: `✅ Posted to channel.`,
-    storeStatus: (open) => open ? `🟢 Store: Open` : `🔴 Store: Coming Soon`,
-    setBioAsk: `✍️ Send the new AIN BIO URL now.`,
-    setBioDone: `✅ AIN BIO URL updated.`,
+    bioText: `🌐 **AIN BIO Service**
+\nTransform your digital presence into one professional page that gathers all your links & plans beautifully.`,
+    
+    adminOnly: `⛔ **Access Denied:** This section is for admins only.`,
+    adminPanel: `🛠 **Admin Control Panel**\n\nManage store status, broadcasts, and links:`,
+    
+    askBroadcast: `✍️ **General Broadcast:**\nWrite the message you want to send to all subscribers.\n\n(To cancel, send: **cancel**)`,
+    askChannelPost: `✍️ **Channel Post:**\nWrite the message to be posted on the official channel.\n\n(To cancel, send: **cancel**)`,
+    
+    broadcastDone: (ok, fail) => `📊 **Broadcast Report:**\n\n✅ Delivered: ${ok}\n⚠️ Failed: ${fail}`,
+    channelPostDone: `🚀 Posted to the official channel successfully!`,
+    storeStatus: (open) => open ? `🟢 **Store Status:** Open` : `🔴 **Store Status:** Coming Soon`,
+    
+    setBioAsk: `✍️ Please send the new **AIN BIO** URL:`,
+    setBioDone: `✅ URL updated successfully! All users will now see the new link.`,
   }
 };
